@@ -93,7 +93,12 @@ hi SpellCap cterm=none ctermbg=none
 if has('gui_running')
     colorscheme solarized
     set background=light
+else
+    colorscheme evening
+    set background=dark
 end
+
+set number
 
 map <leader>rr :source ~/.vimrc<CR>
 
