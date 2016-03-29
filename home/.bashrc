@@ -194,7 +194,7 @@ function lookuperror
     perl -MPOSIX -e 'print strerror($ARGV[0])."\n";' $@
 }
 
-export DEBFULLNAME="Josh Kelley"
+export DEBFULLNAME="Mark Atkin"
 
 # Make unit tests that use Google Test include time taken by default.
 export GTEST_PRINT_TIME=1
@@ -242,3 +242,5 @@ fi
 
 # Optional machine-specific aliases
 test -f ~/.bashrc.local && . ~/.bashrc.local
+
+homeshick --quiet refresh
