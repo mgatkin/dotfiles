@@ -242,5 +242,3 @@ fi
 
 # Optional machine-specific aliases
 test -f ~/.bashrc.local && . ~/.bashrc.local
-
-homeshick --quiet refresh
