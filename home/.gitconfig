@@ -1,0 +1,13 @@
+[user]
+	name = Josh Kelley
+	email = joshkel@gmail.com
+[core]
+	autocrlf = input
+	safecrlf = true
+    excludesfile = ~/.gitignore_global
+[push]
+	default = simple
+[alias]
+	ci = commit
+	st = status
+# vim: set noet
