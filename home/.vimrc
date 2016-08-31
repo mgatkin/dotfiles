@@ -115,14 +115,14 @@ nmap <Esc>[C :next<CR>
 " http://nvie.com/posts/how-i-boosted-my-vim/
 set pastetoggle=<F2>
 
-" Toggle line numbers
-map <F3> :set invnumber number?<CR>
-
 " Toggle word wrap
-map <F4> :set invwrap wrap?<CR>
+map <F5> :set invwrap wrap?<CR>
+
+" Toggle line numbers
+map <F6> :set invnumber number?<CR>
 
 " Toggle spell check
-map <F5> :set invspell spell?<CR>
+map <F7> :set invspell spell?<CR>
 
 " Customize ntpeters/vim-better-whitespace: don't complain for diffs
 let g:better_whitespace_filetypes_blacklist=['diff']
