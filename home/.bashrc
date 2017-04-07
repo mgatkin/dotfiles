@@ -87,6 +87,8 @@ if [[ $(uname) == Darwin ]]; then
     alias gvim=mvim
 fi
 
+alias reset='reset; printf "\033[8;60;120t"'
+
 # Windows, Cygwin, Embarcadero RAD Studio
 if [[ $(uname) != Darwin && $(uname -o) == Cygwin ]]; then
     export cygPROGRAMFILES='/cygdrive/c/Program Files (x86)'

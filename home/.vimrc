@@ -60,7 +60,7 @@ endif
 
 function ColorColumn()
     if v:version >= 703 && has('gui_running')
-        setlocal colorcolumn=80
+        setlocal colorcolumn=100
     endif
 endfunction
 
@@ -91,12 +91,22 @@ hi SpellRare cterm=none ctermbg=none
 hi SpellCap cterm=none ctermbg=none
 
 if has('gui_running')
-    colorscheme solarized
+    colorscheme default
     set background=light
 else
     colorscheme evening
     set background=dark
 end
+
+if has('gui_running')
+    if exists("+lines")
+      set lines=53
+    endif
+    if exists("+columns")
+      set columns=120
+    endif
+    winpos 1900 50
+endif
 
 set number
 
@@ -104,25 +114,52 @@ map <leader>rr :source ~/.vimrc<CR>
 
 " Map Ctrl-Left and Ctrl-Right to :prev (previous file) and :next (next file),
 " respectively
-map  <Esc>[D <Esc>:prev<CR>
-map  <Esc>[C <Esc>:next<CR>
-map! <Esc>[D <Esc>:prev<CR>
-map! <Esc>[C <Esc>:next<CR>
-nmap <Esc>[D :prev<CR>
-nmap <Esc>[C :next<CR>
+if !has('gui_running')
+    map  <Esc>[D <Esc>:prev<CR>
+    map  <Esc>[C <Esc>:next<CR>
+    map! <Esc>[D <Esc>:prev<CR>
+    map! <Esc>[C <Esc>:next<CR>
+    nmap <Esc>[D :prev<CR>
+    nmap <Esc>[C :next<CR>
+else
+    map <C-Left> <Esc>:prev<CR>
+    map <C-Right> <Esc>:next<CR>
+endif
+
+" Map Ctrl-Up and Ctrl-Down to Ctrl-y and Ctrl-e, respectively (scroll
+" up/down a line at a time)
+if !has('gui_running')
+    map  <Esc>[A <C-y>
+    map  <Esc>[B <C-e>
+    map! <Esc>[A <C-y>
+    map! <Esc>[B <C-e>
+    nmap <Esc>[A <C-y>
+    nmap <Esc>[B <C-e>
+else
+    map <C-Up> <C-y>
+    map <C-Down> <C-e>
+endif
 
 " Toggles "paste mode' (no autoindent)
 " http://nvie.com/posts/how-i-boosted-my-vim/
-set pastetoggle=<F2>
-
-" Toggle word wrap
-map <F5> :set invwrap wrap?<CR>
+map <F2> :set invpaste paste?<CR>
+map <leader>p :set invpaste paste?<CR>
 
 " Toggle line numbers
-map <F6> :set invnumber number?<CR>
+map <F3> :set invnumber number?<CR>
+map <leader>num :set invnumber number?<CR>
+
+" Toggle word wrap
+map <F4> :set invwrap wrap?<CR>
+map <leader>ww :set invwrap wrap?<CR>
 
 " Toggle spell check
-map <F7> :set invspell spell?<CR>
+map <F5> :set invspell spell?<CR>
+map <leader>sp :set invspell spell?<CR>
+
+" Toggle background
+map <F6> :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
+map <leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
 
 " Customize ntpeters/vim-better-whitespace: don't complain for diffs
 let g:better_whitespace_filetypes_blacklist=['diff']
