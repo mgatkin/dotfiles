@@ -38,7 +38,7 @@ set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set hidden        " Leave hidden buffers open
 set history=100
 
-set spell
+set nospell
 
 set mousemodel=popup_setpos browsedir=buffer
 set ttimeoutlen=100        " http://stackoverflow.com/a/2158610/25507
