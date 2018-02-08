@@ -20,6 +20,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'elzr/vim-json'
+Plugin 'dracula/vim'
 
 " Support for ES2015, among other things
 " See https://davidosomething.com/blog/vim-for-javascript/
@@ -145,21 +146,36 @@ endif
 map <F2> :set invpaste paste?<CR>
 map <leader>p :set invpaste paste?<CR>
 
-" Toggle line numbers
-map <F3> :set invnumber number?<CR>
-map <leader>num :set invnumber number?<CR>
+" Toggle highlight search
+map <F3> :set invhlsearch hlsearch?<CR>
+map <leader>sp :set invhlsearch hlsearch?<CR>
 
 " Toggle word wrap
 map <F4> :set invwrap wrap?<CR>
 map <leader>ww :set invwrap wrap?<CR>
 
-" Toggle spell check
-map <F5> :set invspell spell?<CR>
-map <leader>sp :set invspell spell?<CR>
+" Toggle line numbers
+map <F5> :set invnumber number?<CR>
+map <leader>num :set invnumber number?<CR>
 
 " Toggle background
 map <F6> :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
 map <leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
+
+" Toggle spell check
+map <F7> :set invspell spell?<CR>
+map <leader>sp :set invspell spell?<CR>
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+    let l:modeline = printf(" vim: ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+    let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+    call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " Customize ntpeters/vim-better-whitespace: don't complain for diffs
 let g:better_whitespace_filetypes_blacklist=['diff']
