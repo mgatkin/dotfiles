@@ -15,6 +15,7 @@ alias path='env | grep PATH'
 alias rp='export PS1="\u@\h:\w\$ "'
 alias rst='echo -e "\033[8;60;120t"'
 alias schroot='schroot -p'
+alias trim='cut -b-$(tput cols)'
 
 #grep aliases
 alias cgrep='find -name "*.c" -or -name "*.cc" -or -name "*.cpp" | xargs grep'
