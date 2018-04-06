@@ -238,7 +238,7 @@ if which git >& /dev/null; then
     source "$HOME/.homesick/repos/homeshick/homeshick.sh"
     source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
     if [[ $- == *i* ]]; then
-        homeshick --quiet refresh
+        homeshick refresh
     fi
 fi
 
