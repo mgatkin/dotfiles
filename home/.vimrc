@@ -111,6 +111,7 @@ endif
 
 set number
 
+" Note: <leader> sequence is '\\' (two backslashes)
 map <leader>rr :source ~/.vimrc<CR>
 
 " Map Ctrl-Left and Ctrl-Right to :prev (previous file) and :next (next file),
@@ -166,6 +167,10 @@ map <leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<C
 map <F7> :set invspell spell?<CR>
 map <leader>sp :set invspell spell?<CR>
 
+" Toggle whitespace
+map <F8> :ToggleWhitespace<CR>
+map <leader>ws :ToggleWhitespace<CR>
+
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
@@ -176,6 +181,13 @@ function! AppendModeline()
     call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 " Customize ntpeters/vim-better-whitespace: don't complain for diffs
 let g:better_whitespace_filetypes_blacklist=['diff']
