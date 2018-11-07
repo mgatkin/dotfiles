@@ -1,0 +1,7 @@
+#!/bin/bash
+#src="/home/matkin/trunk/app/evcode/Debug"
+src="/home/matkin/branches/wireless-balancer-data/app/evcode/Debug"
+for i in `find $src -executable -and -not -type d | cut -b$(expr length $src + 2)- | sort`; do
+    echo Linking $src/$i...
+    ln -sf $src/$i ../test
+done

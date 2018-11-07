@@ -1,0 +1,3 @@
+#!/bin/bash
+updatefirefly-backend $1 $2
+updatefirefly-frontend $1 $2

@@ -1,0 +1,23 @@
+#!/bin/bash
+USER=admin
+TESTDIR=test_matkin
+if [ $# -gt 0 ]; then
+    SERVER=$1
+    if [ $SERVER == "-f" ]; then
+        if [ $# -gt 1 ]; then
+            dest=$2-webview
+        else
+            dest=platinum-webview.tar.gz
+        fi
+    fi
+else
+    SERVER=`platinum-current-model`
+fi
+
+if [ $SERVER == "-f" ]; then
+    echo Creating archive:  $dest
+    tar cvzf $OLDPWD/$dest dist
+else
+    echo Syncing with $SERVER
+    rsync -a --delete ~/trunk/app/WebView/www $USER@$SERVER:$TESTDIR
+fi

@@ -105,6 +105,7 @@ export SVN_EDITOR=vim
 export PATH=$PATH:~/bin
 export LUA_CPATH=";;/usr/local/lib/lua/5.1/?.so"
 export GCC_COLORS=1
+export LANG="en_US.UTF-8"
 
 # ack is known as ack-grep on Debian / Ubuntu
 if ! which ack >& /dev/null; then

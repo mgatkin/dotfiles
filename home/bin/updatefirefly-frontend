@@ -1,0 +1,25 @@
+#!/bin/bash
+user=windrock
+if [ $# -gt 0 ]; then
+    server=$1
+    if [ $server == "-f" ]; then
+        if [ $# -gt 1 ]; then
+            dest=$2-frontend.tar.gz
+        else
+            dest=firefly-frontend.tar.gz
+        fi
+    fi
+else
+    server=`matkin-current-model`
+fi
+cd ~/trunk/app/Firefly
+yarn
+npm run dist
+
+if [ $server == "-f" ]; then
+    echo Creating archive:  $dest
+    tar cvzf $OLDPWD/$dest dist
+else
+    echo Syncing with $server...
+    rsync -a --delete ~/trunk/app/Firefly/dist $user@$server:
+fi

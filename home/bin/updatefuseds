@@ -1,0 +1,16 @@
+#!/bin/bash
+user=admin
+location=test_matkin
+if [ $# -gt 0 ]; then
+    server=$1
+else
+    server=`platinum-current-model`
+fi
+if [ $# -gt 1 ]; then
+    src=$2
+else
+    src=`fuseds-current-build`
+fi
+echo Syncing with $server...
+rsync -avz $src -e ssh $user@$server:~/$location
+

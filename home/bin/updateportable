@@ -1,0 +1,3 @@
+#!/bin/bash
+updatefirefly $1
+updateevcode $1

@@ -1,0 +1,17 @@
+#!/bin/bash
+user=windrock
+location=test
+if [ $# -gt 0 ]; then
+    server=$1
+else
+    server=`matkin-current-model`
+fi
+if [ $# -gt 1 ]; then
+    src=$2
+else
+    src=~/trunk/firmware/fuse6400/Debug/fuse6400
+#    src=~/branches/wireless-balancer-data/firmware/fuse6400/Debug/fuse6400
+fi
+echo Syncing with $server...
+rsync -avz $src -e ssh $user@$server:~/$location
+

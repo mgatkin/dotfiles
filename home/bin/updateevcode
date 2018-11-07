@@ -1,0 +1,9 @@
+#!/bin/bash
+user=windrock
+if [ $# -gt 0 ]; then
+    server=$1
+else
+    server=`matkin-current-model`
+fi
+echo Syncing with $server...
+rsync -avz --copy-links ~/test -e ssh $user@$server:

@@ -1,0 +1,34 @@
+#!/bin/bash
+EXEPATH=~/trunk/
+user=windrock
+if [ $# -gt 0 ]; then
+    server=$1
+    if [ $server == "-f" ]; then
+        if [ $# -gt 1 ]; then
+            dest=$2-backend.tar
+        else
+            dest=firefly-backend.tar
+        fi
+    fi
+else
+    server=`matkin-current-model`
+fi
+build=Debug
+
+if [ $server == "-f" ]; then
+    echo Creating archive:  $dest
+    cd $EXEPATH/app/FireflyBackend/$build
+    tar cvhf $OLDPWD/$dest {FireflyBackend,firefly_backend_tests,firefly_constants,channelcal,show_channel_calibrations}
+    cd $OLDPWD
+    cd $EXEPATH/app/Libs/$build
+    tar uvhf $OLDPWD/$dest libWindrock*
+    cd $OLDPWD
+    cd ~/bin/archive
+    tar uvhf $OLDPWD/$dest *
+    gzip -f $OLDPWD/$dest
+else
+    echo Syncing with $server...
+    rsync -avz --copy-links $EXEPATH/app/FireflyBackend/$build/{FireflyBackend,firefly_backend_tests,firefly_constants,channelcal,show_channel_calibrations} $user@$server:test
+    rsync -avz --copy-links $EXEPATH/app/Libs/$build/libWindrock* $user@$server:test
+    rsync -avz --copy-links ~/bin/archive/* $user@$server:test
+fi

@@ -1,0 +1,32 @@
+#!/bin/bash
+APPPATH=~/trunk/app
+#APPPATH=~/branches/platinum_1.3/app
+BUILD=Debug
+TESTDIR=test_matkin
+USER=admin
+if [ $# -gt 0 ]; then
+    SERVER=$1
+    if [ $SERVER == "-f" ]; then
+        if [ $# -gt 1 ]; then
+            dest=$2.tar
+        else
+            dest=platinum.tar
+        fi
+    fi
+else
+    SERVER=`platinum-current-model`
+fi
+
+if [ $SERVER == "-f" ]; then
+    echo Creating archive:  $dest
+    cd $APPPATH/platinumd/$BUILD
+    tar cvhf $OLDPWD/$dest platinumd
+    cd $OLDPWD
+    cd $APPPATH/Libs/$BUILD
+    tar uvhf $OLDPWD/$dest libWindrock*
+    cd $OLDPWD
+    gzip -f $OLDPWD/$dest
+else
+    echo Syncing with $SERVER
+    rsync -avz --copy-links $APPPATH/platinumd/$BUILD/{platinumd,libWindrock*} $USER@$SERVER:$TESTDIR
+fi

@@ -1,0 +1,3 @@
+#!/bin/bash
+updateplatinumd $1 $2
+updateplatinum-webview $1 $2
