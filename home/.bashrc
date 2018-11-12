@@ -223,14 +223,14 @@ function start_agent {
 }
 
 # Sample ssh-agent setup
-#if [ -f "${SSH_ENV}" ]; then
-#     . "${SSH_ENV}" > /dev/null
-#     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-#        start_agent;
-#    }
-#else
-#    start_agent;
-#fi
+if [ -f "${SSH_ENV}" ]; then
+     . "${SSH_ENV}" > /dev/null
+     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
 
 
 # Homeshick configuration. See the Homeshick tutorial.
