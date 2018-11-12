@@ -6,6 +6,7 @@ alias du0='du --max-depth=0'
 alias du1='du --max-depth=1'
 alias ea='vi $HOME/.bash_aliases'
 alias e='export PS1="\n### tty running eclipse ### (type rp to remove this message)\n\n\u@\h:\w\$ "; /usr/local/eclipse/eclipse &'
+alias hs='homeshick'
 alias l='ls -laF'
 alias ll='ls -laF --color=always | less -R'
 #Remove make alias; adding -j8 at top level breaks build; need to investigate
