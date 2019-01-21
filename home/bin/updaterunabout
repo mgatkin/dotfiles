@@ -1,0 +1,33 @@
+#!/bin/bash
+APPPATH=~/trunk/app
+BUILD=Debug
+TESTDIR=test_matkin
+USER=runabout_test
+if [ $# -gt 0 ]; then
+    SERVER=$1
+    if [ $SERVER == "-f" ]; then
+        if [ $# -gt 1 ]; then
+            dest=$2.tar
+        else
+            dest=runabout.tar
+        fi
+    fi
+else
+    SERVER=`runabout-current-server`
+fi
+
+if [ $SERVER == "-f" ]; then
+    echo Creating archive:  $dest
+    cd $APPPATH/runabout/$BUILD
+    tar cvhf $OLDPWD/$dest runabout
+    cd $OLDPWD
+    cd $APPPATH/Libs/$BUILD
+    tar uvhf $OLDPWD/$dest libWindrock*
+    cd $OLDPWD
+    gzip -f $dest
+else
+    echo Syncing with $SERVER
+    #scp -i ~/.ssh/runabout_test.id_rsa $APPPATH/runabout/$BUILD/{runabout,libWindrock*} $USER@$SERVER:$TESTDIR
+    #To use rsync with a key containing a pass-phrase, may need to use ssh-agent?
+    rsync -avz --copy-links $APPPATH/runabout/$BUILD/{runabout,libWindrock*} $USER@$SERVER:$TESTDIR
+fi

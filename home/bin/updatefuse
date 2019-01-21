@@ -1,0 +1,14 @@
+#!/bin/bash
+user=windrock
+src=~/trunk/firmware/fuse6400/Debug/fuse6400
+#src=~/branches/fuse6400-mutexes/firmware/fuse6400/Debug/fuse6400
+if [ $# -gt 0 ]; then
+    server=$1
+    location=test
+else
+    server=`matkin-current-model`
+    location=test
+fi
+echo Syncing with $server...
+rsync -avz $src -e ssh $user@$server:~/$location
+

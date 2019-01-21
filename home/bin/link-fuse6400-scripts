@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+#
+# Create symbolic links for fuse6400 scripts
+
+SOURCE=/usr/share/fuse6400/scripts
+DEST=/usr/local/bin
+
+# Show usage message
+function show_help {
+  echo "USAGE:" `basename $0` "<option>"
+  echo "By default, create all links"
+  echo "OPTIONS:"
+  echo "  -h|--help     = show this help and exit"
+  echo "  -u|--unlink   = unlink files"
+}
+
+# Link a file
+function create_link {
+  if [ -z "$1" -o -z "$2" ]; then
+    return
+  fi
+  if [ ! -f $1 ]; then
+    echo $1 does not exist
+    return
+  fi
+  if [ -f $2 -a ! -h $2 ]; then
+    echo $2 exists and is not a symbolic link
+    return
+  fi
+  echo $1 "->" $2
+  rm -f $2
+  ln -s $1 $2
+}
+
+# Unlink a file
+function remove_link {
+  if [ -z "$1" ]; then
+    return
+  fi
+  if [ ! -f $1 ]; then
+    return
+  fi
+  if [ ! -h $1 ]; then
+    echo $1 exists and is not a symbolic link
+    return
+  fi
+  echo Unlink $1
+  rm -f $1
+}
+
+
+#
+# Main program
+#
+OPT_UNLINK=0
+for OPT in "$@"; do
+  case $OPT in
+    -h|--help)
+      show_help
+      exit 0
+      ;;
+    -u|--unlink)
+      OPT_UNLINK=1
+      ;;
+  esac
+done
+
+for SRC_FILE in $SOURCE/*; do
+  DEST_FILE=$DEST/`basename ${SRC_FILE%.*}`
+  if [ $OPT_UNLINK -eq 0 ]; then
+    create_link $SRC_FILE $DEST_FILE
+  else
+    remove_link $DEST_FILE
+  fi
+done
