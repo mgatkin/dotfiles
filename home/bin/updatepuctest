@@ -1,0 +1,2 @@
+#!/bin/bash
+rsync -L fixture/* puctest@10.124.20.189:
