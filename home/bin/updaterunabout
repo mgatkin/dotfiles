@@ -1,5 +1,6 @@
 #!/bin/bash
 APPPATH=~/trunk/app
+#APPPATH=~/branches/runabout_0.10/app
 BUILD=Debug
 TESTDIR=test_matkin
 USER=runabout_test

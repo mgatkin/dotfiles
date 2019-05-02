@@ -171,6 +171,9 @@ map <leader>sp :set invspell spell?<CR>
 map <F8> :ToggleWhitespace<CR>
 map <leader>ws :ToggleWhitespace<CR>
 
+" Reformat JSON
+map <leader>json :%!python -m json.tool<CR>
+
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
