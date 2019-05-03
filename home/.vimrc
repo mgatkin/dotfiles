@@ -91,11 +91,10 @@ hi SpellBad cterm=underline ctermbg=none
 hi SpellRare cterm=none ctermbg=none
 hi SpellCap cterm=none ctermbg=none
 
+colorscheme default
 if has('gui_running')
-    colorscheme default
     set background=light
 else
-    colorscheme evening
     set background=dark
 end
 
