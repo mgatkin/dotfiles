@@ -153,4 +153,5 @@ enable-auto-props = yes
 *.js = svn:eol-style=native
 *.css = svn:eol-style=native
 *.html = svn:eol-style=native
+*.py = svn:eol-style=native
 
