@@ -72,7 +72,8 @@ source $VIMRUNTIME/macros/matchit.vim
 " Disabled for now in favor of blanket statement above.
 "au FileType html set spell
 
-au FileType python set et | exec ColorColumn()
+au FileType python set et
+" au FileType python set et | exec ColorColumn()
 
 autocmd BufEnter *.html :syntax sync fromstart
 autocmd BufEnter *.htm :syntax sync fromstart
@@ -91,12 +92,12 @@ hi SpellBad cterm=underline ctermbg=none
 hi SpellRare cterm=none ctermbg=none
 hi SpellCap cterm=none ctermbg=none
 
-colorscheme default
 if has('gui_running')
-    set background=light
+    colorscheme darkblue
 else
-    set background=dark
+    colorscheme default
 end
+set background=dark
 
 if has('gui_running')
     if exists("+lines")
