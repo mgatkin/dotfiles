@@ -8,6 +8,7 @@ alias e='export PS1="\n### tty running eclipse ### (type rp to remove this messa
 alias ea='vi $HOME/.bash_aliases'
 alias eclipse='/usr/local/eclipse/eclipse'
 alias hs='homeshick'
+alias keys='ssh-add `ls ~/.ssh/*rsa* | grep -v .pub`'
 alias l='ls -laF'
 alias ll='ls -laF --color=always | less -R'
 #Remove make alias; adding -j8 at top level breaks build; need to investigate
