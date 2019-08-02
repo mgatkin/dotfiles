@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+KEYS_LOADED=`ssh-add -l | wc -l`
+KEYS_FOUND=`ls ~/.ssh/*rsa* | grep -v .pub | wc -l`
+if [ "${KEYS_LOADED}" != "${KEYS_FOUND}" ]; then
+    ssh-add `ls ~/.ssh/*rsa* | grep -v .pub`
+fi
+echo "Keys loaded:"
+ssh-add -l
