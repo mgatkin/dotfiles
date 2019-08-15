@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+if [ -f environment.mk ]; then
+    echo "environment.mk already exsists"
+    exit 1
+fi
+cat << EOF > environment.mk
+sync: source
+	rsync -avz stage bbb:
+
+publish: tarball
+	scp A3910_\${VERSION}.tgz spotlightcloudadmin:
+
+EOF
+echo "environment.mk created"

@@ -72,7 +72,8 @@ source $VIMRUNTIME/macros/matchit.vim
 " Disabled for now in favor of blanket statement above.
 "au FileType html set spell
 
-au FileType python set et | exec ColorColumn()
+au FileType python set et
+" au FileType python set et | exec ColorColumn()
 
 autocmd BufEnter *.html :syntax sync fromstart
 autocmd BufEnter *.htm :syntax sync fromstart
@@ -92,12 +93,11 @@ hi SpellRare cterm=none ctermbg=none
 hi SpellCap cterm=none ctermbg=none
 
 if has('gui_running')
-    colorscheme default
-    set background=light
+    colorscheme darkblue
 else
-    colorscheme evening
-    set background=dark
+    colorscheme default
 end
+set background=dark
 
 if has('gui_running')
     if exists("+lines")
@@ -170,6 +170,9 @@ map <leader>sp :set invspell spell?<CR>
 " Toggle whitespace
 map <F8> :ToggleWhitespace<CR>
 map <leader>ws :ToggleWhitespace<CR>
+
+" Reformat JSON
+map <leader>json :%!python -m json.tool<CR>
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
