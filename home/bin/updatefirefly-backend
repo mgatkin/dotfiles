@@ -1,5 +1,6 @@
 #!/bin/bash
-EXEPATH=~/trunk/
+EXEPATH=~/branches/WindrockMD_5.0/WindrockMD_5.0.0
+#EXEPATH=~/trunk/app/
 user=windrock
 if [ $# -gt 0 ]; then
     server=$1
@@ -17,10 +18,10 @@ build=Debug
 
 if [ $server == "-f" ]; then
     echo Creating archive:  $dest
-    cd $EXEPATH/app/FireflyBackend/$build
+    cd $EXEPATH/FireflyBackend/$build
     tar cvhf $OLDPWD/$dest {FireflyBackend,firefly_backend_tests,firefly_constants,channelcal,show_channel_calibrations}
     cd $OLDPWD
-    cd $EXEPATH/app/Libs/$build
+    cd $EXEPATH/Libs/$build
     tar uvhf $OLDPWD/$dest libWindrock*
     cd $OLDPWD
     cd ~/bin/archive
@@ -28,7 +29,7 @@ if [ $server == "-f" ]; then
     gzip -f $OLDPWD/$dest
 else
     echo Syncing with $server...
-    rsync -avz --copy-links $EXEPATH/app/FireflyBackend/$build/{FireflyBackend,firefly_backend_tests,firefly_constants,channelcal,show_channel_calibrations} $user@$server:test
-    rsync -avz --copy-links $EXEPATH/app/Libs/$build/libWindrock* $user@$server:test
+    rsync -avz --copy-links $EXEPATH/FireflyBackend/$build/{FireflyBackend,firefly_backend_tests,firefly_constants,channelcal,show_channel_calibrations} $user@$server:test
+    rsync -avz --copy-links $EXEPATH/Libs/$build/libWindrock* $user@$server:test
     rsync -avz --copy-links ~/bin/archive/* $user@$server:test
 fi

@@ -1,4 +1,6 @@
 #!/bin/bash
+EXEPATH=~/branches/WindrockMD_5.0/WindrockMD_5.0.0
+#EXEPATH=~/trunk/app/
 user=windrock
 if [ $# -gt 0 ]; then
     server=$1
@@ -12,7 +14,7 @@ if [ $# -gt 0 ]; then
 else
     server=`matkin-current-model`
 fi
-cd ~/trunk/app/Firefly
+cd $EXEPATH/Firefly
 yarn
 npm run dist
 
@@ -21,5 +23,5 @@ if [ $server == "-f" ]; then
     tar cvzf $OLDPWD/$dest dist
 else
     echo Syncing with $server...
-    rsync -a --delete ~/trunk/app/Firefly/dist $user@$server:
+    rsync -a --delete $EXEPATH/Firefly/dist $user@$server:
 fi
