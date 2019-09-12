@@ -116,7 +116,7 @@ map <leader>rr :source ~/.vimrc<CR>
 
 " Map Ctrl-Left and Ctrl-Right to :prev (previous file) and :next (next file),
 " respectively
-if !has('gui_running')
+if !has('gui_running') && !has('terminal')
     map  <Esc>[D <Esc>:prev<CR>
     map  <Esc>[C <Esc>:next<CR>
     map! <Esc>[D <Esc>:prev<CR>
@@ -130,7 +130,7 @@ endif
 
 " Map Ctrl-Up and Ctrl-Down to Ctrl-y and Ctrl-e, respectively (scroll
 " up/down a line at a time)
-if !has('gui_running')
+if !has('gui_running') && !has('terminal')
     map  <Esc>[A <C-y>
     map  <Esc>[B <C-e>
     map! <Esc>[A <C-y>
