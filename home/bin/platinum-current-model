@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-echo pt-core3.windrock.local
+#echo pt-core3.windrock.local
+echo 10.124.21.243
