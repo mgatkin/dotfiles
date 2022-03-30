@@ -1,7 +1,10 @@
 #!/bin/bash
 alias aa='. $HOME/.bash_aliases'
+alias ack='ack --color'
 alias c='clear'
+alias cless='less -r'
 alias cls='rst; clear; rp'
+alias cmore='less -r'
 alias du0='du --max-depth=0'
 alias du1='du --max-depth=1'
 alias e='export PS1="\n### tty running eclipse ### (type rp to remove this message)\n\n\u@\h:\w\$ "; /usr/local/eclipse/eclipse &'

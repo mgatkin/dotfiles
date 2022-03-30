@@ -1,5 +1,5 @@
 #!/bin/bash
-EXEPATH=~/branches/WindrockMD_5.0/WindrockMD_5.0.0
+EXEPATH=~/branches/WindrockMD_5.2
 #EXEPATH=~/trunk/app/
 user=windrock
 if [ $# -gt 0 ]; then
