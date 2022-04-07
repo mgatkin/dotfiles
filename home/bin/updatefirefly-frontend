@@ -1,6 +1,6 @@
 #!/bin/bash
-EXEPATH=~/branches/WindrockMD_5.2
-#EXEPATH=~/trunk/app/
+EXEPATH=~/branches/WindrockMD_5.2/app
+#EXEPATH=~/trunk/app
 user=windrock
 if [ $# -gt 0 ]; then
     server=$1
