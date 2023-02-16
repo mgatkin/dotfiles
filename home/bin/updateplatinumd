@@ -1,6 +1,6 @@
 #!/bin/bash
-APPPATH=~/trunk/app
-#APPPATH=~/branches/platinum_1.3/app
+#APPPATH=~/trunk/app
+APPPATH=~/branches/platinum_1.4/app
 BUILD=Debug
 TESTDIR=test_matkin
 USER=admin
@@ -20,12 +20,12 @@ fi
 if [ $SERVER == "-f" ]; then
     echo Creating archive:  $dest
     cd $APPPATH/platinumd/$BUILD
-    tar cvhf $OLDPWD/$dest platinumd
+    tar cvhf $APPPATH/$dest platinumd
     cd $OLDPWD
     cd $APPPATH/Libs/$BUILD
-    tar uvhf $OLDPWD/$dest libWindrock*
+    tar uvhf $APPPATH/$dest libWindrock*
     cd $OLDPWD
-    gzip -f $OLDPWD/$dest
+    gzip -f $APPPATH/$dest
 else
     echo Syncing with $SERVER
     rsync -avz --copy-links $APPPATH/platinumd/$BUILD/{platinumd,libWindrock*} $USER@$SERVER:$TESTDIR
